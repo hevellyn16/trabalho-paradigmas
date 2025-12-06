@@ -156,7 +156,8 @@ REGRAS = {
     # 2. Funções (Evolução)
     r".*está evoluindo para\s+(.+)": "def {nome_func}():",
     r".*parou de evoluir": "pass",
-    r".*use a habilidade\s+(.+)!": "{nome_func}()",
+    r".*use a habilidade\s+(\w+)\s+com\s+(.+)!": "{nome_func}({args})",
+    r".*use a habilidade\s+(\w+)!": "{nome_func}()",
 
     # 3. Loops (Música)
     r"🎵\s+(\d+)\s+\((.+)\)\s+na [Mm]ochila": "{var} = {val}\nwhile {var} > 0:",
