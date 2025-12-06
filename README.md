@@ -1,11 +1,12 @@
-````markdown
+
 # 🔴 PokéLang - Documentação Oficial (Cinnabar Edition)
 
 **Disciplina:** Paradigmas de Linguagens de Programação  
 **Projeto:** Criação de Linguagem Esotérica  
 **Extensão de Arquivo:** `.poke`  
 **Linguagem Alvo:** Python 3  
-**Equipe:** * ANNA ALICYA MAGALHAES CRUZ - 568323
+**Equipe:** 
+* ANNA ALICYA MAGALHAES CRUZ - 568323
 * ANTONIO KILDERE SOUSA MENEZES - 567258
 * DANIEL NECO SILVA - 568270
 * HEVELLYN MEIRIANE NASCIMENTO DE MESQUITA - 565892
@@ -16,7 +17,7 @@
 
 ## 1. Introdução
 
-A **PokéLang** evoluiu. O que antes era uma linguagem de batalha, agora é uma **Linguagem Esotérica de Horror Cósmico**, simulando um *Memory Dump* corrompido da infame **Ilha Cinnabar** (local dos glitches originais de Pokémon Red/Blue).
+A **PokéLang** é uma **Linguagem Esotérica de Horror Cósmico**, simulando um *Memory Dump* corrompido da infame **Ilha Cinnabar** (local dos glitches originais de Pokémon Red/Blue).
 
 O objetivo da linguagem é proporcionar uma experiência de programação imersiva e instável. O código fonte (`.poke`) é processado por um tradutor que injeta uma "Engine de Corrupção", resultando em saídas de texto com efeito de máquina de escrever, caracteres "sujos" (Zalgo text), sons de sistema e erros fatais temáticos (Bad Egg).
 
@@ -190,7 +191,4 @@ O pokémon selvagem desmaiou
 
 ```bash
 python pokego.py crash_test.poke
-```
-
-```
 ```
