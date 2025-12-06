@@ -4,7 +4,7 @@ import random
 # --- FUNÇÕES AUXILIARES DO TRADUTOR ---
 
 def limpar_var(nome):
-    """Limpa nome de variável: (N1) -> n1"""
+    """Padroniza nomes de variáveis."""
     return nome.lower().replace(' ', '_')
 
 def processar_codigo(expr):
@@ -32,7 +32,7 @@ def processar_condicao(cond):
     return processar_codigo(cond)
 
 
-# --- CÓDIGO INJETADO (Runtime Esotérico - Com Som Real) ---
+# --- CÓDIGO INJETADO (Runtime Esotérico - Cinnabar Engine) ---
 CABECALHO = r'''# Início
 import sys
 import time
@@ -58,7 +58,7 @@ BOLD = "\033[1m"
 # --- ENGINE GLITCH ---
 
 def typewriter(texto, atraso=0.02):
-    """Simula texto sendo digitado"""
+    # Simula texto sendo digitado
     for char in texto:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -67,7 +67,7 @@ def typewriter(texto, atraso=0.02):
     print("")
 
 def gerar_ruido(texto):
-    """Insere caracteres estranhos no texto"""
+    # Insere caracteres estranhos no texto
     if random.random() > 0.4: return texto
     chars_ruido = ['#', '?', '%', '&', '§', 'ERROR', '¿']
     lista = list(texto)
@@ -86,15 +86,13 @@ def inicializar_corrupcao():
     hexdump_simulado()
 
 def tocar_som_erro():
-    """Toca um beep agudo se estiver no Windows"""
+    # Toca um beep agudo se estiver no Windows
     if SOM_HABILITADO:
-        # Frequência 2000Hz (Agudo), Duração 800ms
         try:
             winsound.Beep(2000, 800)
         except:
-            pass # Se falhar, ignora
+            pass
     else:
-        # Tenta o beep padrão do sistema
         print('\a')
 
 # --- TRATAMENTO DE ERRO GLOBAL (BAD EGG) ---
@@ -108,7 +106,6 @@ def manipulador_de_excecao(exctype, value, traceback):
     print(f"{COR_ERR}O jogo tentou acessar um endereço inválido.{RESET}")
     print(f"{COR_HEX}Dump: {value}{RESET}")
     
-    # TOCA O SOM AGORA
     tocar_som_erro()
 
 sys.excepthook = manipulador_de_excecao
@@ -119,6 +116,7 @@ inicializar_corrupcao()
 # --- FUNÇÕES PARA O USUÁRIO ---
 
 def void_echo(*args, **kwargs):
+    # Print com glitch visual
     texto = " ".join(map(str, args))
     texto_corrompido = gerar_ruido(texto)
     prefixo = f"{COR_CODE}▓▒░{RESET} "
@@ -127,10 +125,12 @@ def void_echo(*args, **kwargs):
     typewriter(texto_corrompido)
 
 def void_inject(prompt=""):
+    # Input estilizado
     if prompt: void_echo(prompt)
     return builtins.input(f"{COR_GLITCH}0x??? >> {RESET}")
 
 def glitch_float(valor):
+    # Converte para float ou retorna 0.0 se falhar
     try:
         return float(valor)
     except:
@@ -138,6 +138,7 @@ def glitch_float(valor):
         return 0.0
 
 def duplicar_item(valor):
+    # Glitch de multiplicar por 128
     print(f"{COR_CODE}[GLITCH] Item duplicado no 6º slot!{RESET}")
     try:
         return valor * 128
