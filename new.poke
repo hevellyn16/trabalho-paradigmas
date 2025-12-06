@@ -1,0 +1,33 @@
+Um pokémon selvagem apareceu
+
+(ProfessorCarvalho) Use cantar "=== CALCULADORA POKÉ ==="
+(ProfessorCarvalho) Use cantar "Digite o primeiro número:"
+(N1) Use detectar
+(ProfessorCarvalho) Use cantar "Digite o segundo número:"
+(N2) Use detectar
+(ProfessorCarvalho) Use cantar "Digite a operação (+, -, *, /):"
+(Operador) Use detectar
+
+(N1) tem float(N1) de vida
+(N2) tem float(N2) de vida
+(Resultado) tem 0 de vida
+
+(Resultado) Escolha o movimento se (Operador == "+")
+    (Resultado) tem (N1 + N2) de vida
+(Resultado) Fim da escolha
+
+(Resultado) Escolha o movimento se (Operador == "-")
+    (Resultado) tem (N1 - N2) de vida
+(Resultado) Fim da escolha
+
+(Resultado) Escolha o movimento se (Operador == "*")
+    (Resultado) tem (N1 * N2) de vida
+(Resultado) Fim da escolha
+
+(Resultado) Escolha o movimento se (Operador == "/")
+    (Resultado) tem (N1 / N2) de vida
+(Resultado) Fim da escolha
+
+(ProfessorCarvalho) Use cantar "Resultado = " + str(Resultado)
+
+O pokémon selvagem desmaiou
