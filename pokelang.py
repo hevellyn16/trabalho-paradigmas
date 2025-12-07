@@ -8,18 +8,46 @@ def limpar_var(nome):
     return nome.lower().replace(' ', '_')
 
 def processar_codigo(expr):
-    """Trata variáveis e funções."""
+    """
+    Processa identificadores no código, aplicando padronização de variáveis (snake_case)
+    e convertendo tipos, mas preserva strings literais intactas.
+    """
+    
+    # 1. Padroniza referências explícitas: (Variavel) -> variavel
+    # Necessário pois a sintaxe da linguagem obriga o uso de parênteses.
     expr = re.sub(r"(?<!\w)\((\w+)\)", lambda m: limpar_var(m.group(1)), expr)
     expr = re.sub(r"(?<=\w)\((\w+)\)", lambda m: f"({limpar_var(m.group(1))})", expr)
     
-    def substituir_var_solta(m):
-        palavra = m.group(1)
-        keywords = ["True", "False", "None", "not", "and", "or", "input", "float", "int", "str"]
-        if palavra in keywords: return palavra
-        return palavra.lower()
+    def tokenizador_inteligente(m):
+        """Callback para decidir se o token é uma String (preserva) ou Identificador (processa)."""
+        
+        # Grupo 1: String literal encontrada (ex: "Texto")
+        # Retorna exatamente como está para evitar corrupção de dados.
+        if m.group(1):
+            return m.group(1) 
+        
+        # Grupo 2: Identificador solto (ex: VarName)
+        # Aplica a convenção de nomenclatura, exceto se for palavra reservada do Python.
+        elif m.group(2):
+            palavra = m.group(2)
+            keywords = {"True", "False", "None", "not", "and", "or", "input", "float", "int", "str"}
+            
+            if palavra in keywords: 
+                return palavra
+            return palavra.lower() # Converte para snake_case/minúsculo
+        
+        return m.group(0)
 
-    expr = re.sub(r"\b([A-Z][a-zA-Z0-9_]*)\b", substituir_var_solta, expr)
+    # Regex de Alternância (Lexical Priority):
+    # Padrão 1: "..." -> Casa strings completas (escapa do processamento).
+    # Padrão 2: \bIdentificador\b -> Casa variáveis que precisam de tratamento.
+    padrao_lexico = r'("[^"]*")|\b([A-Z][a-zA-Z0-9_]*)\b'
+    
+    expr = re.sub(padrao_lexico, tokenizador_inteligente, expr)
+
+    # 3. Injeção de Runtime para tipos
     expr = re.sub(r"\bfloat\(", "glitch_float(", expr)
+    
     return expr
 
 def processar_texto(expr):
